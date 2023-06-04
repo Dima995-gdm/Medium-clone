@@ -8,12 +8,12 @@
             <ul class="nav navbar-nav pull-xs-right">
                 <li class="nav-item">
                     <router-link class="nav-link" to="/" active-class="active">
-                        Home
+                        Home 
                     </router-link>
                 </li>
                 <template v-if="isLoggedIn">
                     <li class="nav-item">
-                        <router-link class="nav-link" to="createArticle" active-class="active">
+                        <router-link class="nav-link" :to="{ name:'createArticle' }" active-class="active">
                             <i class="ion-compose"></i>&nbsp;New Article
                         </router-link>
                     </li>
@@ -30,7 +30,7 @@
                     </li>
                 </template>
 
-                <template v-if="!isLoggedIn">
+                <template v-if="isAnonymous">
                     <li class="nav-item">
                         <router-link class="nav-link" to="login" active-class="active">
                             Sign in
@@ -48,13 +48,18 @@
 </template>
 
 <script>
+import {getterTypes} from '@/store/modules/auth'
+
 export default {
     computed: {
         currentUser() {
-            return this.$store.state.auth.currentUser;
+            return this.$store.getters[getterTypes.currentUser];
         },
         isLoggedIn() {
-            return this.$store.state.auth.isLoggedIn;
+            return this.$store.getters[getterTypes.isLoggedIn];
+        },
+        isAnonymous() {
+            return this.$store.getters[getterTypes.isAnonymous];
         },
     },
 };

@@ -70,7 +70,7 @@ export default {
                 username: this.username
             })
             .then(() => {
-                this.$router.push({name: 'home'})
+                this.$router.push({name: 'globalFeed'})
             })
         }
     },
