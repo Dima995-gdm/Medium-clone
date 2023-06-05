@@ -6,7 +6,7 @@
                     <Feed :apiUrl="apiUrl"/>
                 </div>
                 <div class="col-md-3">
-
+                    <PopularTags/>
                 </div>
             </div>
         </div>
@@ -16,9 +16,13 @@
 
 <script>
 import Feed from '@/components/Feed.vue'
+import PopularTags from '@/components/PopularTags.vue'
 
 export default {
-    components: { Feed },
+    components: { 
+        Feed,
+        PopularTags
+    },
     data() {
         return {
             apiUrl: '/articles'

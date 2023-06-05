@@ -28,10 +28,10 @@
                 </router-link>
             </div>
             <Pagination 
-                :total="total" 
+                :total="feed.articlesCount" 
                 :limit="limit" 
                 :currentPage="currentPage"
-                :url="url"
+                :url="baseUrl"
             />
         </div>
     </div>
@@ -40,14 +40,14 @@
 <script>
 import { actionTypes } from "@/store/modules/feed";
 import Pagination from "@/components/Pagination";
+import { limit } from "@/helpers/variables";
+import queryString  from 'query-string';
 
 export default {
     components: { Pagination },
     data() {
         return {
-            total: 500,
-            limit: 10,
-            currentPage: 5,
+            limit,
             url: '/tags/dragons'
         }
     },
@@ -67,9 +67,35 @@ export default {
         error() {
             return this.$store.state.feed.error;
         },
+        currentPage() {
+            return +this.$route.query.page || 1;
+        },
+        baseUrl() {
+            return this.$route.path;
+        },
+        offset() {
+            return this.currentPage * limit - limit;
+        }
+    },
+    watch: {
+        currentPage() {
+            this.fetchFeed();
+        }
+    },
+    methods: {
+        fetchFeed() {
+            const parsedUrl = queryString.parseUrl(this.apiUrl);
+            const stringifiedParams = queryString.stringify({
+                limit,
+                offset: this.offset,
+                ...parsedUrl.query
+            });
+            const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`
+            this.$store.dispatch(actionTypes.getFeed, { apiUrl: apiUrlWithParams });
+        }
     },
     mounted() {
-        this.$store.dispatch(actionTypes.getFeed, { apiUrl: this.apiUrl });
+        this.fetchFeed();
     },
 };
 </script>
