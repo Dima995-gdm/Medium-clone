@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-if="isLoading">Loading...</div>
-        <div v-if="error">Something bad happed</div>
+        <Loading v-if="isLoading"/>
+        <ErrorMessage v-if="error"/>
         <div v-if="feed">
             <div
                 class="article-preview"
@@ -24,7 +24,7 @@
                     <h1>{{ article.title }}</h1>
                     <p>{{ article.description }}</p>
                     <span>Read more...</span>
-                    TAG LIST
+                    <TagList :tags="article.tagList"/>
                 </router-link>
             </div>
             <Pagination 
@@ -42,9 +42,17 @@ import { actionTypes } from "@/store/modules/feed";
 import Pagination from "@/components/Pagination";
 import { limit } from "@/helpers/variables";
 import queryString  from 'query-string';
+import Loading from '@/components/Loading.vue';
+import ErrorMessage from '@/components/ErrorMessage.vue';
+import TagList from '@/components/TagList.vue';
 
 export default {
-    components: { Pagination },
+    components: { 
+        Pagination,
+        Loading,
+        ErrorMessage,
+        TagList
+    },
     data() {
         return {
             limit,

@@ -1,6 +1,6 @@
 <template>
-    <div v-if="isLoading">Loading...</div>
-    <div v-if="error">Something bad happed</div>
+    <Loading v-if="isLoading"/>
+    <ErrorMessage v-if="error"/>
     <div v-if="popularTags">
         <div class="sidebar">
             <p>Popular Tags</p>
@@ -20,8 +20,14 @@
 
 <script>
 import { actionTypes } from "@/store/modules/popularTags";
+import Loading from '@/components/Loading.vue';
+import ErrorMessage from '@/components/ErrorMessage.vue';
 
 export default {
+    components: {
+        Loading,
+        ErrorMessage
+    },
     computed: {
         isLoading() {
             return this.$store.state.popularTags.isLoading;
