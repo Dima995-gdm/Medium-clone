@@ -3,7 +3,7 @@
         <div class="container page">
             <div class="row">
                 <div class="col-md-10 offset-md-1 col-xs-12">
-                    <ValidationErrors v-if="errors"/>
+                    <ValidationErrors v-if="errors" :validationErrors="errors"/>
                     <form @submit.prevent="onSubmit">
                         <fieldset>
                             <fieldset class="form-group">
@@ -19,7 +19,7 @@
                                     type="text"
                                     class="form-control form-control-lg"
                                     placeholder="Description"
-                                    v-model="descr"
+                                    v-model="description"
                                 />
                             </fieldset>
                             <fieldset class="form-group">
@@ -77,19 +77,19 @@ export default {
     },
     data() {
         return {
-            title: "",
-            descr: "",
-            body: "",
-            tagList: "",
+            title: '',
+            description: '',
+            body: '',
+            tagList: '',
         };
     },
     methods: {
         onSubmit() {
             const form = {
                 title: this.title,
-                descr: this.descr,
+                description: this.description,
                 body: this.body,
-                tagList: this.tagList,
+                tagList: this.tagList.split(' '),
             };
             this.$emit("articleSubmit", form);
         },

@@ -1,16 +1,15 @@
 <template>
-    <div>
-        <ArticleForm 
-            :initialValues="initialValues" 
-            :errors="validationErrors"
-            :isSubmitting="isSubmitting"
-            @articleSubmit="onSubmit"
-        />
-    </div>
+    <ArticleForm 
+        :initialValues="initialValues" 
+        :errors="validationErrors"
+        :isSubmitting="isSubmitting"
+        @articleSubmit="onSubmit"
+    />
 </template>
 
 <script>
-import ArticleForm from '@/components/ArticleForm.vue'
+import ArticleForm from '@/components/ArticleForm.vue';
+import { actionTypes } from '@/store/modules/articles/createArticle';
 
 export default {
     components: {
@@ -20,17 +19,25 @@ export default {
         return {
             initialValues: {
                 title: '',
-                descr: '',
+                description: '',
                 body: '',
                 tagList: []
             },
-            validationErrors: null,
-            isSubmitting: false
+        }
+    },
+    computed: {
+        isSubmitting() {
+            return this.$store.state.createArticle.isSubmiting;
+        },
+        validationErrors() {
+            return this.$store.state.createArticle.validationErrors;
         }
     },
     methods: {
-        onSubmit(data) {
-            console.log(data);
+        onSubmit(articleInput) {
+            this.$store.dispatch(actionTypes.createArticle, {articleInput}).then((article) => {
+                this.$router.push({name: 'article', params: {slug: article.slug}})
+            })
         }
     }
 }
