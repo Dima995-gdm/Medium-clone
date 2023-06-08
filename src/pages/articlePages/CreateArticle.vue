@@ -9,7 +9,7 @@
 
 <script>
 import ArticleForm from '@/components/ArticleForm.vue';
-import { actionTypes } from '@/store/modules/articles/createArticle';
+import { actionTypes } from '@/store/modules/articleModules/createArticle';
 
 export default {
     components: {

@@ -5,8 +5,10 @@ import YourFeed from '@/pages/YourFeed';
 import TagFeed from '@/pages/TagFeed';
 import Register from '@/pages/Register';
 import Login from '@/pages/Login';
-import Article from '@/pages/Article';
-import CreateArticle from '@/pages/CreateArticle';
+import Article from '@/pages/articlePages/Article';
+import CreateArticle from '@/pages/articlePages/CreateArticle';
+import EditArticle from '@/pages/articlePages/EditArticle';
+import Settings from '@/pages/Settings';
 
 const routers = createRouter({
     history: createWebHistory(),
@@ -49,12 +51,12 @@ const routers = createRouter({
         {
             path: '/articles/:slug/edit',
             name: 'editArticle',
-            component: GlobalFeed
+            component: EditArticle
         },
         {
             path: '/settings',
             name: 'settings',
-            component: GlobalFeed
+            component: Settings
         },
         {
             path: '/profiles/:slug',

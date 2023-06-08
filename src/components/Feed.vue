@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { actionTypes } from "@/store/modules/articles/feed";
+import { actionTypes } from "@/store/modules/feed";
 import Pagination from "@/components/Pagination";
 import { limit } from "@/helpers/variables";
 import queryString  from 'query-string';

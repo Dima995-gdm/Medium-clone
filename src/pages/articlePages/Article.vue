@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { actionTypes } from "@/store/modules/articles/article";
+import { actionTypes } from "@/store/modules/articleModules/article";
 import { getterTypes } from "@/store/modules/auth";
 import Login from "@/components/Loading.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";

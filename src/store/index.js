@@ -1,10 +1,12 @@
 import {createStore} from 'vuex';
 
 import auth from '@/store/modules/auth'
-import feed from '@/store/modules/articles/feed'
+import feed from '@/store/modules/feed'
 import popularTags from '@/store/modules/popularTags'
-import article from '@/store/modules/articles/article'
-import createArticle from '@/store/modules/articles/createArticle'
+import article from '@/store/modules/articleModules/article'
+import createArticle from '@/store/modules/articleModules/createArticle'
+import editArticle from '@/store/modules/articleModules/editArticle'
+import settings from '@/store/modules/settings'
 
 const store = createStore({
     modules: {
@@ -12,7 +14,9 @@ const store = createStore({
         feed,
         popularTags,
         article,
-        createArticle
+        createArticle,
+        editArticle,
+        settings
     }
 });
 
