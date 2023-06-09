@@ -18,7 +18,13 @@
                         </router-link>
                         <span class="date">{{ article.createdAt }}</span>
                     </div>
-                    <div class="pull-xs-right">ADD TO FAVORITES</div>
+                    <div class="pull-xs-right">
+                        <AddToFavorites 
+                            :isFavorited="article.favorited"
+                            :articleSlug="article.slug"
+                            :favoritesCount="article.favoritesCount"
+                        />
+                    </div>
                 </div>
                 <router-link :to="{ name: 'article', params: { slug: article.slug } }" class="preview-link">
                     <h1>{{ article.title }}</h1>
@@ -42,16 +48,18 @@ import { actionTypes } from "@/store/modules/feed";
 import Pagination from "@/components/Pagination";
 import { limit } from "@/helpers/variables";
 import queryString  from 'query-string';
-import Loading from '@/components/Loading.vue';
-import ErrorMessage from '@/components/ErrorMessage.vue';
-import TagList from '@/components/TagList.vue';
+import Loading from '@/components/Loading';
+import ErrorMessage from '@/components/ErrorMessage';
+import TagList from '@/components/TagList';
+import AddToFavorites from '@/components/AddToFavorites';
 
 export default {
     components: { 
         Pagination,
         Loading,
         ErrorMessage,
-        TagList
+        TagList,
+        AddToFavorites
     },
     data() {
         return {
