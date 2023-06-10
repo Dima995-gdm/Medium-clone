@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-xs-12 col-md-8 offset-md-2">
-            <form class="card comment-form ng-valid ng-dirty ng-submitted" @submit.prevent="createArticle">
+            <form class="card comment-form ng-valid ng-dirty ng-submitted" @submit.prevent="createComment">
                 <div class="card-block">
                     <textarea
                         class="form-control ng-valid ng-dirty ng-touched ng-empty"
@@ -85,10 +85,7 @@ export default {
         }
     },
     methods: {
-        fetchComments() {
-            this.$store.dispatch(actionTypes.getComment, {slug: this.getSlug})
-        },
-        createArticle() {
+        createComment() {
             this.$store.dispatch(actionTypes.createComment, {
                 slug: this.$route.params.slug,
                 commentText: {body: this.commentText}
