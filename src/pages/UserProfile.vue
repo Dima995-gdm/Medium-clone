@@ -8,7 +8,6 @@
                         <h4>{{ userProfile.username }}</h4>
                         <p>{{ userProfile.bio }}</p>
                         <div>
-                            FOLLOW USER BUTTON
                             <router-link
                                 v-if="isCurrentUserProfile"
                                 class="btn btn-sm btn-outline-secondary action-btn"
@@ -16,6 +15,7 @@
                             >
                                 Edit Profile Settings
                             </router-link>
+                            <FollowUser v-else :userToFollow="userProfile"/>
                         </div>
                     </div>
                 </div>
@@ -62,10 +62,12 @@
 import Feed from '@/components/Feed';
 import {actionTypes} from '@/store/modules/userProfile';
 import {getterTypes} from '@/store/modules/auth';
+import FollowUser from '@/components/FollowUser';
 
 export default {
     components: {
-        Feed
+        Feed,
+        FollowUser
     },
     computed: {
         isLoading() {

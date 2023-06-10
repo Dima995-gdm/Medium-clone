@@ -9,7 +9,8 @@
         }"
     >
         <i class="ion-heart" />
-        <span>&nbsp; {{ favoritesCountOptimistic }}</span>
+        <span v-if="isFullFavoriteInfo">&nbsp; {{ textButton }}&nbsp; ({{ favoritesCountOptimistic }})</span>
+        <span v-else>&nbsp; {{ favoritesCountOptimistic }}</span>
     </button>
 </template>
 
@@ -29,6 +30,10 @@ export default {
             type: Number,
             required: true,
         },
+        isFullFavoriteInfo: {
+            type: Boolean,
+            required: false
+        }
     },
     data() {
         return {
@@ -51,7 +56,11 @@ export default {
             }
             this.isFavoritedOptimistic = !this.isFavoritedOptimistic
         }
-        
+    },
+    computed: {
+        textButton() {
+            return this.isFavoritedOptimistic ? 'Unfavorite Article' : 'Favorite Article'
+        }
     }
 };
 </script>

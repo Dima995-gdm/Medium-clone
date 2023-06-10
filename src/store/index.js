@@ -9,6 +9,8 @@ import editArticle from '@/store/modules/articleModules/editArticle'
 import settings from '@/store/modules/settings'
 import addToFavorites from '@/store/modules/addToFavorites'
 import userProfile from '@/store/modules/userProfile'
+import followUser from '@/store/modules/followUser'
+import comment from '@/store/modules/comment'
 
 const store = createStore({
     modules: {
@@ -20,7 +22,9 @@ const store = createStore({
         editArticle,
         settings,
         addToFavorites,
-        userProfile
+        userProfile,
+        followUser,
+        comment
     }
 });
 
