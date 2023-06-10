@@ -9,6 +9,7 @@ import Article from '@/pages/articlePages/Article';
 import CreateArticle from '@/pages/articlePages/CreateArticle';
 import EditArticle from '@/pages/articlePages/EditArticle';
 import Settings from '@/pages/Settings';
+import UserProfile from '@/pages/UserProfile';
 
 const routers = createRouter({
     history: createWebHistory(),
@@ -61,12 +62,12 @@ const routers = createRouter({
         {
             path: '/profiles/:slug',
             name: 'userProfile',
-            component: GlobalFeed
+            component: UserProfile
         },
         {
             path: '/profiles/:slug/favorites',
             name: 'userProfileFavorites',
-            component: GlobalFeed
+            component: UserProfile
         },
     ]
 });
